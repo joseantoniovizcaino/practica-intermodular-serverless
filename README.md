@@ -523,4 +523,8 @@ Si todo está bien, actualiza en el .env el valor de *VITE_COGNITO_REDIRECT_URI*
 npm run build
 ```
 
-Súbelo al bucket S3 `notas-` + tus iniciales, eliminando previamente reemplazar la versión sin autenticación. Para asegurarnos que CloudFront no sigue cacheando una versión antigua, es conveniente realizar una invalidación de caché como en la fase 2. Una vez hecho, vuelve a hacer las pruebas de funcionamiento y todo listo.
+Súbelo al bucket S3 `notas-` + tus iniciales, eliminando previamente reemplazar la versión sin autenticación. Para asegurarnos que CloudFront no sigue cacheando una versión antigua, es conveniente realizar una invalidación de caché como en la fase 2. 
+
+Finalmente deberás actualizar en la app de Cognito la URL de Callback y logout, para que deje de apuntar a http://localhost:puerto de las pruebas y ahora se dirija al index.html que has subido.
+
+Una vez hecho, vuelve a hacer las pruebas de funcionamiento y todo listo.
