@@ -381,6 +381,8 @@ Para ver la arquitectura de la fase 3, enfoquémonos en la autenticación: simpl
 
 Ya puedes descargarte el nuevo cliente VUE con soporte para autenticación de Cognito. Observa su nueva estructura, que no muestra nada ni permite realizar ninguna operación hasta que el usuario se autentique.
 
+Puedes hacer pruebas de funcionamiento en mi despliegue en esta dirección https://notas-jlg.s3.us-east-1.amazonaws.com/index.html (usuario "usuario" password "Arn-2026").
+
 Descárgala en un directorio local para realizar las pruebas como hiciste con la versión anterior.
 
 ## Creación y configuración de user-pool de Cognito
