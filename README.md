@@ -617,12 +617,17 @@ async function getNotesByUser(userId) {
 
 
 ### Generación de información
-
 Una vez activada la instrumentación, **accede a la aplicación** a través del cliente web y **realiza varias operaciones** de creación, borrado, edición y síntesis de notas. De esta manera se generarán **trazas**, **métricas** y **logs** que podremos inspeccionar a continuación.
 
+### Trazas y mapas de trazas
+1.  Accede a **CloudWatch** / **Application Signals** / **Traces**
+2.  Selecciona un rango de tiempo amplio, de 1 hora
+3.  Comprueba que aparecen trazas de las acciones realizadas
+4.  Inspecciona algunas de las trazas y observa las llamadas a los servicios AWS que se han realizado dentro de ella (DynamoDB, Polly,&#x2026;). Revisa las métricas de las llamadas a dichos servicios: errores, latencia,&#x2026;
+5.  Accede a **CloudWatch** / **Application Signals** / **Trace Map**
+6.  Observa el mapa de servicio que se ha creado tras las interacciones con la aplicación
 
 ### CloudWatch Application Signals
-
 CloudWatch Application Signals proporciona una vista unificada del rendimiento de tu aplicación, incluyendo métricas, trazas y mapas de servicios.
 
 1.  Accede a **CloudWatch** en la consola de AWS
@@ -665,7 +670,8 @@ CloudWatch Application Insights proporciona dashboards automáticos y detección
 1.  Accede a **CloudWatch** / **Application Signals** / **Application Insights**
 2.  Haz clic en **Add an application**
 3.  Selecciona **Resource group based application**
-4.  Localiza y selecciona el grupo de recursos asociado a la **plantilla SAM** del proyecto
+4.  Localiza y selecciona el grupo de recursos asociado a la **plantilla SAM** del proyecto. Si no aparece, pulsa en la opción `Register an application`:
+    ![img](./imagenes/14_resources.png)
 5.  Deja las opciones por defecto y **crea la aplicación**
 
 Una vez creada la aplicación, Application Insights creará automáticamente:
