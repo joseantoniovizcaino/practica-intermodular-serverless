@@ -550,8 +550,8 @@ En esta última parte configuraremos servicios de AWS para **monitorizar** el fu
 
 AWS Lambda soporta **instrumentación automática** mediante OpenTelemetry (OTEL), que es el estándar moderno para observabilidad. Sin embargo, para que las trazas se visualicen en CloudWatch y X-Ray, es necesario **activar también el tracing de X-Ray** en las funciones Lambda.
 
-> [!NOTE] **¿Por qué necesitamos tanto OpenTelemetry como X-Ray?**
-> 
+> [!NOTE]
+> **¿Por qué necesitamos tanto OpenTelemetry como X-Ray?**
 > OpenTelemetry es el estándar abierto para instrumentación que captura las trazas de tu aplicación. Sin embargo, estas trazas necesitan ser **enviadas a un backend** para su almacenamiento y visualización.
 > 
 > En AWS Lambda, cuando activas `Tracing: Active`, se inicia el **demonio de X-Ray** que actúa como receptor de las trazas. La capa ADOT (AWS Distro for OpenTelemetry) envía automáticamente las trazas capturadas por OpenTelemetry al demonio de X-Ray, que a su vez las reenvía al servicio X-Ray de AWS.
@@ -577,9 +577,11 @@ Globals:
         AWS_LAMBDA_EXEC_WRAPPER: /opt/otel-instrument
 ```
 
-> [!NOTE] La capa ADOT proporciona instrumentación automática para las llamadas a servicios de AWS (DynamoDB, S3, Polly, Translate, etc.) y para las peticiones HTTP, sin necesidad de modificar el código de las funciones.
+> [!NOTE]
+> La capa ADOT proporciona instrumentación automática para las llamadas a servicios de AWS (DynamoDB, S3, Polly, Translate, etc.) y para las peticiones HTTP, sin necesidad de modificar el código de las funciones.
 
-> [!NOTE] Puedes localizar los ARN de la capa ADOT en la [documentación oficial](https://aws-otel.github.io/docs/getting-started/lambda#aws-lambda-layer-for-opentelemetry-arns)
+> [!NOTE]
+> Puedes localizar los ARN de la capa ADOT en la [documentación oficial](https://aws-otel.github.io/docs/getting-started/lambda#aws-lambda-layer-for-opentelemetry-arns)
 
 Si quisiéramos añadir **trazas personalizadas** para operaciones específicas, podríamos instalar el SDK de OpenTelemetry:
 
@@ -626,7 +628,8 @@ CloudWatch Application Signals proporciona una vista unificada del rendimiento d
 1.  Accede a **CloudWatch** en la consola de AWS
 2.  Ve a **Application Signals** en el menú lateral y explora las secciones **Services**, **Application Map** y **Transaction Search**
 
-> [!NOTE] Application Signals se activa automáticamente cuando utilizas la capa ADOT con la variable de entorno `AWS_LAMBDA_EXEC_WRAPPER=/opt/otel-instrument`. No requiere configuración adicional.
+> [!NOTE]
+> Application Signals se activa automáticamente cuando utilizas la capa ADOT con la variable de entorno `AWS_LAMBDA_EXEC_WRAPPER=/opt/otel-instrument`. No requiere configuración adicional.
 
 
 ### Análisis del Application Map
@@ -651,7 +654,8 @@ La pestaña **Services** también proporciona información muy valiosa:
 
 ![img](./imagenes/13_services.png)
 
-> [!NOTE] El Application Map se actualiza automáticamente conforme tu aplicación recibe tráfico. Si no ves conexiones a DynamoDB u otros servicios, asegúrate de haber realizado peticiones que invoquen esas operaciones.
+> [!NOTE]
+> El Application Map se actualiza automáticamente conforme tu aplicación recibe tráfico. Si no ves conexiones a DynamoDB u otros servicios, asegúrate de haber realizado peticiones que invoquen esas operaciones.
 
 
 ### Integración de dashboards con Application Insights
@@ -672,9 +676,11 @@ Una vez creada la aplicación, Application Insights creará automáticamente:
 
 **Accede** al dashboard de la aplicación y **explora** la información que aparece.
 
-> [!NOTE] Application Insights utiliza machine learning para detectar automáticamente patrones anómalos en tus métricas y logs, sin necesidad de configurar umbrales manualmente.
+> [!NOTE]
+> Application Insights utiliza machine learning para detectar automáticamente patrones anómalos en tus métricas y logs, sin necesidad de configurar umbrales manualmente.
 
-> [!IMPORTANT] Application Insights crea un gran número de alarmas y recursos en CloudWatch. Si se deja mucho tiempo, puede acarrear un coste considerable. Al terminar este apartado, **elimina la aplicación** de Application Insights.
+> [!IMPORTANT]
+> Application Insights crea un gran número de alarmas y recursos en CloudWatch. Si se deja mucho tiempo, puede acarrear un coste considerable. Al terminar este apartado, **elimina la aplicación** de Application Insights.
 
 
 ### Simulación de fallos y análisis
@@ -703,4 +709,5 @@ Una vez completada la fase 3:
 3.  Verifica que los servicios de monitorización están activos y funcionando
 4.  Realiza una **Pull Request** al repositorio original para entregar la práctica
 
-> [!IMPORTANT] No destruyas los recursos de AWS hasta que la práctica haya sido corregida. Recuerda que son servicios serverless con coste mínimo o nulo si no se utilizan intensivamente.
+> [!IMPORTANT]
+> No destruyas los recursos de AWS hasta que la práctica haya sido corregida. Recuerda que son servicios serverless con coste mínimo o nulo si no se utilizan intensivamente.
